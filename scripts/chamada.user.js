@@ -1,14 +1,22 @@
 // ==UserScript==
 // @name         Chamada
 // @namespace    https://github.com/pantheonlbs/
-// @version      1.4
+// @version      1.9
 // @description  Responder chamada
 // @author       pantheonlbs
 // @match        https://*/html5client/*
 // @grant        none
 // ==/UserScript==
 
+Object.defineProperty(window, 'onbeforeunload', {
+    'set': function() {}
+});
+
 (function() {
+  window.onbeforeunload = function(){
+    return true;
+};
+  
 	function createCheckbox() {
 		let checkbox = document.createElement('input')
 		checkbox.setAttribute('type', 'checkbox')
@@ -53,4 +61,6 @@
 			botao_audio.click()
 		}
 	}, 2 * 1000)
+  
+  window.onbeforeunload = null
 })()
